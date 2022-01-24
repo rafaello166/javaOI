@@ -35,6 +35,8 @@ public class Main {
 
                         roundel.calculate();
 
+                        roundel.saveOutput();
+
                         System.out.println(roundel);
 
 //                        break; // wykonaj tylko dla pierwszego pliku

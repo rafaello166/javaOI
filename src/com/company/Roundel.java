@@ -1,13 +1,14 @@
 package com.company;
 
+import java.util.Scanner; // Import the Scanner class to read text files
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
-import java.util.Scanner; // Import the Scanner class to read text files
-import java.util.Arrays;
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;  // Import the IOException class to handle errors
 
 
 public class Roundel {
-    private String file_path;
+    private String file_path, file_name;
     private int height, quantity; // first line of each file
     private int hole_diameter_count[]; // second line means the disc diameter of tower
     private int hole_diameter_in[]; // third line means the disc diameter to fit to the tower
@@ -30,7 +31,9 @@ public class Roundel {
             File file = new File(l_path);
             Scanner myReader = new Scanner(file);
 
-            System.out.println("Wczytuje plik: " + file.getName());
+            this.file_name = file.getName();
+
+            System.out.println("Wczytuje plik: " + this.file_name);
 
             int line = 0, size = 0;
             while (myReader.hasNextLine()) {
@@ -67,7 +70,6 @@ public class Roundel {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -89,7 +91,28 @@ public class Roundel {
         }
 
         this.result = Math.max(0, iterator + 1);
+    }
 
+    /**
+     * save output
+     */
+    public void saveOutput() {
+        String output_path = "test_files\\out\\";
+        File directory = new File(output_path);
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+
+        try {
+            FileWriter myWriter = new FileWriter(output_path + this.file_name);
+            myWriter.write(Integer.toString(this.result));
+            System.out.println(this.result);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
     @Override
