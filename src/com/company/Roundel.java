@@ -12,6 +12,7 @@ public class Roundel {
     private int height, quantity; // first line of each file
     private int hole_diameter_count[]; // second line means the disc diameter of tower
     private int hole_diameter_in[]; // third line means the disc diameter to fit to the tower
+    private boolean incorrectData = false;
     private int result;
 
     public Roundel() {
@@ -19,7 +20,6 @@ public class Roundel {
 
     /**
      * Load date from file
-     *
      * @param l_path relative path to the file
      */
     public Roundel(String l_path) {
@@ -42,23 +42,21 @@ public class Roundel {
 
                 switch (line) {
                     case 0:
-                        this.height = Integer.parseInt(numbers[0]);
-                        this.quantity = Integer.parseInt(numbers[1]);
+                        this.height = tryParseInt(numbers[0]);
+                        this.quantity = tryParseInt(numbers[1]);
                         break;
                     case 1:
                         size = numbers.length;
                         this.hole_diameter_count = new int[size];
                         for (int i = 0; i < size; i++) {
-                            this.hole_diameter_count[i] = Integer.parseInt(numbers[i]);
-//                            System.out.println(this.hole_diameter_count[i]);
+                            this.hole_diameter_count[i] = tryParseInt(numbers[i]);
                         }
                         break;
                     case 2:
                         size = numbers.length;
                         this.hole_diameter_in = new int[size];
                         for (int i = 0; i < size; i++) {
-                            this.hole_diameter_in[i] = Integer.parseInt(numbers[i]);
-//                            System.out.println(this.hole_diameter_in[i]);
+                            this.hole_diameter_in[i] = tryParseInt(numbers[i]);
                         }
                         break;
                 }
@@ -73,9 +71,29 @@ public class Roundel {
     }
 
     /**
+     * parseInt with exception method
+     *
+     * @param String text
+     * @return Integer
+     */
+    private Integer tryParseInt(String text) {
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            this.incorrectData = true;
+            return -1;
+        }
+    }
+
+    /**
      * Calculate metod
      */
     public void calculate() {
+        if (incorrectData) {
+            this.result = -1;
+            return;
+        }
+
         for (int i = 1; i < this.height; i++) {
             this.hole_diameter_count[i] = Math.min(this.hole_diameter_count[i], this.hole_diameter_count[i - 1]);
         }
@@ -83,7 +101,6 @@ public class Roundel {
         int iterator = this.height;
 
         for (int i = 0; i < this.quantity; i++) {
-//            System.out.println(this.hole_diameter_in[i]);
             while (iterator > 0 && this.hole_diameter_count[iterator - 1] < this.hole_diameter_in[i]) {
                 iterator--;
             }
@@ -105,8 +122,14 @@ public class Roundel {
 
         try {
             FileWriter myWriter = new FileWriter(output_path + this.file_name);
-            myWriter.write(Integer.toString(this.result));
-            System.out.println(this.result);
+
+            if (incorrectData) {
+                myWriter.write("Wrong data!");
+            }
+            else {
+                myWriter.write(Integer.toString(this.result));
+            }
+
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
