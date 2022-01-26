@@ -8,7 +8,7 @@ import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;  // Import the IOException class to handle errors
 
 
-public class Taxi {
+public class Taxi extends Roundel {
     private String file_path, file_name;
     private long start_end_distance, start_point_distance, taxisNumber; // [m,d,n] distance in km
     private long fuel_distance[]; // [xi]

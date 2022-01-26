@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 public class MainGUI extends JFrame {
     private JPanel mainForm;
     private JButton roundelAlg;
-    private JButton XXXButton;
+    private JButton taxiAlg;
     private JButton infoButton;
     private JButton exitButton;
 
@@ -25,8 +25,16 @@ public class MainGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFrame.dispose();
-                RounderForm rounderForm = new RounderForm();
-                rounderForm.load();
+                AlgorithmForm rounderForm = new AlgorithmForm();
+                rounderForm.load("Rounder");
+            }
+        });
+        taxiAlg.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.dispose();
+                AlgorithmForm rounderForm = new AlgorithmForm();
+                rounderForm.load("Taxi");
             }
         });
         exitButton.addActionListener(new ActionListener() {

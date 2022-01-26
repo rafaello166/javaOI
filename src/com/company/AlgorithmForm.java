@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.*;
 
-public class RounderForm {
+public class AlgorithmForm {
     private JPanel rounderForm;
     private JTextField fileLocation;
     private JButton loadFiles;
@@ -19,15 +19,17 @@ public class RounderForm {
     private JButton returnMenu;
     private JTable outputTable;
     private JButton saveOutput;
-    private ArrayList<Roundel> roundelList = new ArrayList<Roundel>();
+    private JLabel algorithmName;
+    private ArrayList<Roundel> instanceAlgoritm = new ArrayList<Roundel>();
+    private String rounderOrTaxiClass; // Class name to override
 
-    private JFrame rounderFrame = new JFrame();
+    private JFrame algorithmFrame = new JFrame();
 
-    public RounderForm() {
+    public AlgorithmForm() {
         returnMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                rounderFrame.dispose();
+                algorithmFrame.dispose();
                 MainGUI mainGUI = new MainGUI();
                 mainGUI.load();
             }
@@ -52,10 +54,15 @@ public class RounderForm {
                 File folder = new File(jfc.getSelectedFile().toString());
                 File[] listOfFiles = folder.listFiles();
 
-                roundelList.clear();
+                instanceAlgoritm.clear();
                 for (File file : listOfFiles) {
                     if (file.isFile()) {
-                        roundelList.add(new Roundel(file.getPath()));
+                        if (rounderOrTaxiClass == "Rounder") {
+                            instanceAlgoritm.add(new Roundel(file.getPath()));
+                        }
+                        else if (rounderOrTaxiClass == "Taxi") {
+                            instanceAlgoritm.add(new Taxi(file.getPath()));
+                        }
                     }
                 }
             }
@@ -65,8 +72,8 @@ public class RounderForm {
             public void actionPerformed(ActionEvent e) {
                 try {
                     boolean success = true;
-                    if (!roundelList.isEmpty()) {
-                        for (Roundel roundel : roundelList) {
+                    if (!instanceAlgoritm.isEmpty()) {
+                        for (Roundel roundel : instanceAlgoritm) {
                             roundel.calculate();
                             String incorrectDataOnFile = roundel.incorrectDataOnFile();
                             if (incorrectDataOnFile != null) {
@@ -111,11 +118,11 @@ public class RounderForm {
                 model.setColumnCount(0);
                 model.setRowCount(0);
 
-                if (!roundelList.isEmpty()) {
+                if (!instanceAlgoritm.isEmpty()) {
                     model.addColumn("FileName");
                     model.addColumn("Output");
 
-                    for (Roundel roundel : roundelList) {
+                    for (Roundel roundel : instanceAlgoritm) {
 //                    resultAlgorithm.put(roundel.getResultOnFile()[0],
 //                            Integer.parseInt(roundel.getResultOnFile()[1])
 //                    );
@@ -135,9 +142,9 @@ public class RounderForm {
         saveOutput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String output_path = "test_files\\kra\\out\\";
-                if (!roundelList.isEmpty()) {
-                    for (Roundel roundel : roundelList) {
+                String output_path = "test_files\\out\\";
+                if (!instanceAlgoritm.isEmpty()) {
+                    for (Roundel roundel : instanceAlgoritm) {
                         roundel.saveOutput(output_path);
                     }
                     JOptionPane.showMessageDialog(rounderForm,
@@ -153,12 +160,20 @@ public class RounderForm {
         });
     }
 
-    public void load() {
-        rounderFrame.add(rounderForm);
-        rounderFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        rounderFrame.pack();
-        rounderFrame.setVisible(true);
 
+    public void load(String rounderOrTaxiClass) {
+        algorithmFrame.add(rounderForm);
+        algorithmFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        algorithmFrame.pack();
+        algorithmFrame.setVisible(true);
+
+        this.rounderOrTaxiClass = rounderOrTaxiClass;
+        if (rounderOrTaxiClass == "Rounder") {
+            algorithmName.setText("Krążki - Olimpiada Informatyczna XIII");
+        }
+        else {
+            algorithmName.setText("Taksówki - Olimpiada Informatyczna XX");
+        }
         outputTable.setVisible(false);
     }
 }
