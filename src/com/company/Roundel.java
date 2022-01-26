@@ -13,10 +13,9 @@ public class Roundel {
     private int hole_diameter_count[]; // second line means the disc diameter of tower
     private int hole_diameter_in[]; // third line means the disc diameter to fit to the tower
     private boolean incorrectData = false;
-    private int result;
+    private int result = -1;
 
-    public Roundel() {
-    }
+    public Roundel() {}
 
     /**
      * Load date from file
@@ -72,7 +71,6 @@ public class Roundel {
 
     /**
      * parseInt with exception method
-     *
      * @param String text
      * @return Integer
      */
@@ -83,6 +81,17 @@ public class Roundel {
             this.incorrectData = true;
             return -1;
         }
+    }
+
+    /**
+     * Return file name in which data is incorrect
+     * @return String
+     */
+    public String incorrectDataOnFile() {
+        if (this.incorrectData) {
+            return this.file_name;
+        }
+        return null;
     }
 
     /**
@@ -113,8 +122,8 @@ public class Roundel {
     /**
      * save output
      */
-    public void saveOutput() {
-        String output_path = "test_files\\out\\";
+    public void saveOutput(String output_path) {
+//        String output_path = "test_files\\out\\";
         File directory = new File(output_path);
         if (!directory.exists()) {
             directory.mkdir();
@@ -138,9 +147,21 @@ public class Roundel {
         }
     }
 
+    /**
+     * Override toString method
+     * @return console output
+     */
     @Override
     public String toString() {
         return String.format("Wynik operacji to: %d", this.result);
+    }
+
+    /**
+     * Return Result Array
+     * @return String Array {file_name, result}
+     */
+    public String[] getResultOnFile() {
+        return new String[]{this.file_name, String.valueOf(this.result)};
     }
 
 }

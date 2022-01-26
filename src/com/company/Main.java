@@ -8,6 +8,11 @@ import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
+
+        // Uruchamianie GUI
+        MainGUI mainGUI = new MainGUI();
+        mainGUI.load();
+
         // main menu
 //        System.out.println("----");
 //        System.out.println("MENU");
@@ -22,34 +27,32 @@ public class Main {
 //
 //        Scanner scan = new Scanner(System.in);
 //        int step = scan.nextInt();
-        int step = 1;
-
-        switch (step) {
-            case 1:
-                File folder = new File("test_files/in/");
-                File[] listOfFiles = folder.listFiles();
-
-                for (File file : listOfFiles) {
-                    if (file.isFile()) {
-                        Roundel roundel = new Roundel(file.getPath());
-
-                        roundel.calculate();
-
-                        roundel.saveOutput();
-
-                        System.out.println(roundel);
-
-//                        break; // wykonaj tylko dla pierwszego pliku
-
-                    }
-                }
-
-                break;
-
-            default:
-                System.exit(0);
-                break;
-        }
+//        int step = 1;
+//
+//        switch (step) {
+//            case 1:
+//                File folder = new File("test_files/in/");
+//                File[] listOfFiles = folder.listFiles();
+//
+//                for (File file : listOfFiles) {
+//                    if (file.isFile()) {
+//                        Roundel roundel = new Roundel(file.getPath());
+//
+//                        roundel.calculate();
+//
+//                        roundel.saveOutput("test_files\\out\\");
+//
+//                        System.out.println(roundel);
+//
+//                    }
+//                }
+//
+//                break;
+//
+//            default:
+//                System.exit(0);
+//                break;
+//        }
 
     }
 }
