@@ -76,7 +76,7 @@ public class Taxi {
             return Long.parseLong(text);
         } catch (NumberFormatException e) {
             this.incorrectData = true;
-            return Long.parseLong("-1"); // TODO: change it
+            return -1L;
         }
     }
 
