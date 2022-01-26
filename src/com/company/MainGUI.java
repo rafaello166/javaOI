@@ -21,8 +21,6 @@ public class MainGUI extends JFrame {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.pack();
         mainFrame.setSize(400, 400);
-        mainTitle.setFont(new Font("Verdana", Font.PLAIN, 26));
-        mainTitle.setForeground(new Color(154, 101, 12));
         mainFrame.setVisible(true);
     }
 

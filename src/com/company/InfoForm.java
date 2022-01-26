@@ -32,12 +32,8 @@ public class InfoForm {
         infoFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         infoFrame.pack();
         infoFrame.setSize(500, 400);
-        mainTitle.setFont(new Font("Verdana", Font.PLAIN, 26));
-        mainTitle.setForeground(new Color(154, 101, 12));
-        footer.setFont(new Font("Verdana", Font.PLAIN, 20));
-        footer.setForeground(new Color(130, 100, 50, 255));
         MainTextPanel.setFont(new Font("Verdana", Font.PLAIN, 16));
-        MainTextPanel.setBackground(new Color(242, 242, 242));
+        MainTextPanel.setBackground(new Color(0,0,0, 0));
         infoFrame.setVisible(true);
     }
 }

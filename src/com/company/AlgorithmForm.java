@@ -168,10 +168,6 @@ public class AlgorithmForm {
         algorithmFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         algorithmFrame.pack();
         algorithmFrame.setSize(400, 500);
-        mainTitle.setFont(new Font("Verdana", Font.PLAIN, 26));
-        mainTitle.setForeground(new Color(154, 101, 12));
-        algorithmName.setFont(new Font("Verdana", Font.PLAIN, 16));
-        algorithmName.setForeground(new Color(120, 90, 25));
         algorithmFrame.setVisible(true);
 
         this.roundelOrTaxiClass = roundelOrTaxiClass;
