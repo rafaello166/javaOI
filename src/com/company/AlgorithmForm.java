@@ -7,6 +7,8 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 import java.util.ArrayList;
+import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.table.*;
 
@@ -20,6 +22,7 @@ public class AlgorithmForm {
     private JTable outputTable;
     private JButton saveOutput;
     private JLabel algorithmName;
+    private JLabel mainTitle;
     private ArrayList<Roundel> instanceAlgoritm = new ArrayList<Roundel>();
     private String roundelOrTaxiClass; // Class name to override
 
@@ -165,7 +168,11 @@ public class AlgorithmForm {
         algorithmFrame.add(algorithmForm);
         algorithmFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         algorithmFrame.pack();
-        algorithmFrame.setSize(400, 650);
+        algorithmFrame.setSize(400, 500);
+        mainTitle.setFont(new Font("Verdana", Font.PLAIN, 26));
+        mainTitle.setForeground(new Color(154, 101, 12));
+        algorithmName.setFont(new Font("Verdana", Font.PLAIN, 16));
+        algorithmName.setForeground(new Color(120, 90, 25));
         algorithmFrame.setVisible(true);
 
         this.roundelOrTaxiClass = roundelOrTaxiClass;

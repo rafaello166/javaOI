@@ -3,6 +3,8 @@ package com.company;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.awt.Font;
 
 public class MainGUI extends JFrame {
     private JPanel mainForm;
@@ -10,6 +12,7 @@ public class MainGUI extends JFrame {
     private JButton taxiAlg;
     private JButton infoButton;
     private JButton exitButton;
+    private JLabel mainTitle;
 
     private JFrame mainFrame = new JFrame();
 
@@ -18,6 +21,8 @@ public class MainGUI extends JFrame {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.pack();
         mainFrame.setSize(400, 400);
+        mainTitle.setFont(new Font("Verdana", Font.PLAIN, 26));
+        mainTitle.setForeground(new Color(154, 101, 12));
         mainFrame.setVisible(true);
     }
 
