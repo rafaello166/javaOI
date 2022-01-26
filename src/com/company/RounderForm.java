@@ -135,7 +135,7 @@ public class RounderForm {
         saveOutput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String output_path = "test_files\\out\\";
+                String output_path = "test_files\\kra\\out\\";
                 if (!roundelList.isEmpty()) {
                     for (Roundel roundel : roundelList) {
                         roundel.saveOutput(output_path);
