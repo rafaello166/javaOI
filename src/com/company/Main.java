@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit; // for delay
 import java.lang.InterruptedException;
 import java.io.File;
 

@@ -74,7 +74,7 @@ public class AlgorithmForm {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    boolean success = true;
+                    int successFiles = 0;
                     if (!instanceAlgoritm.isEmpty()) {
                         for (Roundel roundel : instanceAlgoritm) {
                             roundel.calculate();
@@ -84,22 +84,21 @@ public class AlgorithmForm {
                                         "Nie poprawne dane w pliku: " + incorrectDataOnFile,
                                         "Błąd algorytmu",
                                         JOptionPane.WARNING_MESSAGE);
-
-                                success = false;
+                            }
+                            else{
+                                successFiles++;
                             }
                         }
                     }
                     else {
-                        success = false;
-
                         JOptionPane.showMessageDialog(algorithmForm,
                                 "Nie wskazano poprawnego folderu!",
                                 "Błąd algorytmu",
                                 JOptionPane.ERROR_MESSAGE);
                     }
-                    if (success) {
+                    if (successFiles > 0) {
                         JOptionPane.showMessageDialog(algorithmForm,
-                                "Algorytm został wykonany pomyślnie!");
+                                "Algorytm został wykonany poprawnie dla: " + successFiles + " plików");
                     }
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(algorithmForm,
