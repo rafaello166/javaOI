@@ -4,16 +4,11 @@ import java.util.Arrays;
 import java.util.Scanner; // Import the Scanner class to read text files
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
-import java.io.FileWriter;   // Import the FileWriter class
-import java.io.IOException;  // Import the IOException class to handle errors
 
 
 public class Taxi extends Roundel {
-    private String file_path, file_name;
     private long start_end_distance, start_point_distance, taxisNumber; // [m,d,n] distance in km
     private long fuel_distance[]; // [xi]
-    private boolean incorrectData = false;
-    private long result = -1;
 
     public Taxi() {
     }
@@ -81,18 +76,6 @@ public class Taxi extends Roundel {
     }
 
     /**
-     * Return file name in which data is incorrect
-     *
-     * @return String
-     */
-    public String incorrectDataOnFile() {
-        if (this.incorrectData) {
-            return this.file_name;
-        }
-        return null;
-    }
-
-    /**
      * Desc sort long array
      *
      * @param arr
@@ -113,8 +96,8 @@ public class Taxi extends Roundel {
      * Calculate metod
      */
     public void calculate() {
-        if (incorrectData) {
-            this.result = -1;
+        if (this.incorrectData) {
+            this.result = -1L;
             return;
         }
 
@@ -163,57 +146,11 @@ public class Taxi extends Roundel {
         }
 
         if (2L * (this.start_point_distance - position) + this.start_end_distance - this.start_point_distance <= lastTaxi) {
-            this.result = this.taxisNumber + 1;
+            this.result = this.taxisNumber + 1L;
             return;
         }
 
         this.result = 0;
-    }
-
-    /**
-     * save output
-     */
-    public void saveOutput(String output_path) {
-//        String output_path = "test_files\\kra\\out\\";
-        File directory = new File(output_path);
-        if (!directory.exists()) {
-            directory.mkdir();
-        }
-
-        try {
-            FileWriter myWriter = new FileWriter(output_path + this.file_name);
-
-            if (incorrectData) {
-                myWriter.write("Wrong data!");
-            } else {
-                myWriter.write(Long.toString(this.result));
-            }
-
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Override toString method
-     *
-     * @return console output
-     */
-    @Override
-    public String toString() {
-        return String.format("Wynik operacji to: %d", this.result);
-    }
-
-    /**
-     * Return Result Array
-     *
-     * @return String Array {file_name, result}
-     */
-    public String[] getResultOnFile() {
-        return new String[]{this.file_name, String.valueOf(this.result)};
     }
 
 }

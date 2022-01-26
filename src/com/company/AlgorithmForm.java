@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.swing.table.*;
 
 public class AlgorithmForm {
-    private JPanel rounderForm;
+    private JPanel algorithmForm;
     private JTextField fileLocation;
     private JButton loadFiles;
     private JButton calculateAlg;
@@ -21,7 +21,7 @@ public class AlgorithmForm {
     private JButton saveOutput;
     private JLabel algorithmName;
     private ArrayList<Roundel> instanceAlgoritm = new ArrayList<Roundel>();
-    private String rounderOrTaxiClass; // Class name to override
+    private String roundelOrTaxiClass; // Class name to override
 
     private JFrame algorithmFrame = new JFrame();
 
@@ -57,10 +57,10 @@ public class AlgorithmForm {
                 instanceAlgoritm.clear();
                 for (File file : listOfFiles) {
                     if (file.isFile()) {
-                        if (rounderOrTaxiClass == "Rounder") {
+                        if (roundelOrTaxiClass == "Roundel") {
                             instanceAlgoritm.add(new Roundel(file.getPath()));
                         }
-                        else if (rounderOrTaxiClass == "Taxi") {
+                        else if (roundelOrTaxiClass == "Taxi") {
                             instanceAlgoritm.add(new Taxi(file.getPath()));
                         }
                     }
@@ -77,7 +77,7 @@ public class AlgorithmForm {
                             roundel.calculate();
                             String incorrectDataOnFile = roundel.incorrectDataOnFile();
                             if (incorrectDataOnFile != null) {
-                                JOptionPane.showMessageDialog(rounderForm,
+                                JOptionPane.showMessageDialog(algorithmForm,
                                         "Nie poprawne dane w pliku: " + incorrectDataOnFile,
                                         "Błąd algorytmu",
                                         JOptionPane.WARNING_MESSAGE);
@@ -89,17 +89,17 @@ public class AlgorithmForm {
                     else {
                         success = false;
 
-                        JOptionPane.showMessageDialog(rounderForm,
+                        JOptionPane.showMessageDialog(algorithmForm,
                                 "Nie wskazano poprawnego folderu!",
                                 "Błąd algorytmu",
                                 JOptionPane.ERROR_MESSAGE);
                     }
                     if (success) {
-                        JOptionPane.showMessageDialog(rounderForm,
+                        JOptionPane.showMessageDialog(algorithmForm,
                                 "Algorytm został wykonany pomyślnie!");
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(rounderForm,
+                    JOptionPane.showMessageDialog(algorithmForm,
                             "Nie wskazano poprawnego folderu!",
                             "Błąd algorytmu",
                             JOptionPane.ERROR_MESSAGE);
@@ -142,16 +142,16 @@ public class AlgorithmForm {
         saveOutput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String output_path = "test_files\\out\\";
+                String output_path = "output\\";
                 if (!instanceAlgoritm.isEmpty()) {
                     for (Roundel roundel : instanceAlgoritm) {
                         roundel.saveOutput(output_path);
                     }
-                    JOptionPane.showMessageDialog(rounderForm,
+                    JOptionPane.showMessageDialog(algorithmForm,
                             "Wyniki zapisane w katalogu: " + output_path);
                 }
                 else {
-                    JOptionPane.showMessageDialog(rounderForm,
+                    JOptionPane.showMessageDialog(algorithmForm,
                             "Nie udało się zapisać wyniku!",
                             "Błąd",
                             JOptionPane.ERROR_MESSAGE);
@@ -161,14 +161,14 @@ public class AlgorithmForm {
     }
 
 
-    public void load(String rounderOrTaxiClass) {
-        algorithmFrame.add(rounderForm);
+    public void load(String roundelOrTaxiClass) {
+        algorithmFrame.add(algorithmForm);
         algorithmFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         algorithmFrame.pack();
         algorithmFrame.setVisible(true);
 
-        this.rounderOrTaxiClass = rounderOrTaxiClass;
-        if (rounderOrTaxiClass == "Rounder") {
+        this.roundelOrTaxiClass = roundelOrTaxiClass;
+        if (roundelOrTaxiClass == "Roundel") {
             algorithmName.setText("Krążki - Olimpiada Informatyczna XIII");
         }
         else {

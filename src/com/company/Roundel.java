@@ -8,12 +8,12 @@ import java.io.IOException;  // Import the IOException class to handle errors
 
 
 public class Roundel {
-    private String file_path, file_name;
+    protected String file_path, file_name;
     private int height, quantity; // first line of each file
     private int hole_diameter_count[]; // second line means the disc diameter of tower
     private int hole_diameter_in[]; // third line means the disc diameter to fit to the tower
-    private boolean incorrectData = false;
-    private int result = -1;
+    protected boolean incorrectData = false;
+    protected long result = -1;
 
     public Roundel() {}
 
@@ -136,7 +136,7 @@ public class Roundel {
                 myWriter.write("Wrong data!");
             }
             else {
-                myWriter.write(Integer.toString(this.result));
+                myWriter.write(Long.toString(this.result));
             }
 
             myWriter.close();

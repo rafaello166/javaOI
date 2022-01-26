@@ -25,16 +25,16 @@ public class MainGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFrame.dispose();
-                AlgorithmForm rounderForm = new AlgorithmForm();
-                rounderForm.load("Rounder");
+                AlgorithmForm roundelForm = new AlgorithmForm();
+                roundelForm.load("Roundel");
             }
         });
         taxiAlg.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFrame.dispose();
-                AlgorithmForm rounderForm = new AlgorithmForm();
-                rounderForm.load("Taxi");
+                AlgorithmForm roundelForm = new AlgorithmForm();
+                roundelForm.load("Taxi");
             }
         });
         exitButton.addActionListener(new ActionListener() {
