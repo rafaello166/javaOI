@@ -26,6 +26,7 @@ public class InfoForm {
         infoFrame.add(infoForm);
         infoFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         infoFrame.pack();
+        infoFrame.setSize(400, 400);
         infoFrame.setVisible(true);
     }
 }

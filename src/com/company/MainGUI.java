@@ -17,6 +17,7 @@ public class MainGUI extends JFrame {
         mainFrame.add(mainForm);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.pack();
+        mainFrame.setSize(400, 400);
         mainFrame.setVisible(true);
     }
 

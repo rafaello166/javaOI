@@ -165,6 +165,7 @@ public class AlgorithmForm {
         algorithmFrame.add(algorithmForm);
         algorithmFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         algorithmFrame.pack();
+        algorithmFrame.setSize(400, 650);
         algorithmFrame.setVisible(true);
 
         this.roundelOrTaxiClass = roundelOrTaxiClass;
