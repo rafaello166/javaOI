@@ -7,8 +7,6 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 import java.util.ArrayList;
-import java.awt.Color;
-import java.awt.Font;
 
 import javax.swing.table.*;
 
@@ -81,7 +79,7 @@ public class AlgorithmForm {
                             String incorrectDataOnFile = roundel.incorrectDataOnFile();
                             if (incorrectDataOnFile != null) {
                                 JOptionPane.showMessageDialog(algorithmForm,
-                                        "Nie poprawne dane w pliku: " + incorrectDataOnFile,
+                                        "Niepoprawne dane w pliku: " + incorrectDataOnFile,
                                         "Błąd algorytmu",
                                         JOptionPane.WARNING_MESSAGE);
                             }
@@ -111,9 +109,6 @@ public class AlgorithmForm {
         showOutput.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-//                Map<String, Integer> resultAlgorithm = new HashMap<String, Integer>();
-
                 outputTable.setVisible(true);
 
                 DefaultTableModel model = (DefaultTableModel) outputTable.getModel();
@@ -125,9 +120,6 @@ public class AlgorithmForm {
                     model.addColumn("Output");
 
                     for (Roundel roundel : instanceAlgoritm) {
-//                    resultAlgorithm.put(roundel.getResultOnFile()[0],
-//                            Integer.parseInt(roundel.getResultOnFile()[1])
-//                    );
                         model.addRow(new Object[]{
                                 roundel.getResultOnFile()[0],
                                 roundel.getResultOnFile()[1]

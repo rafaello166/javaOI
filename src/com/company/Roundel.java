@@ -15,10 +15,12 @@ public class Roundel {
     protected boolean incorrectData = false;
     protected long result = -1;
 
-    public Roundel() {}
+    public Roundel() {
+    }
 
     /**
      * Load date from file
+     *
      * @param l_path relative path to the file
      */
     public Roundel(String l_path) {
@@ -71,6 +73,7 @@ public class Roundel {
 
     /**
      * parseInt with exception method
+     *
      * @param String text
      * @return Integer
      */
@@ -85,6 +88,7 @@ public class Roundel {
 
     /**
      * Return file name in which data is incorrect
+     *
      * @return String
      */
     public String incorrectDataOnFile() {
@@ -123,7 +127,6 @@ public class Roundel {
      * save output
      */
     public void saveOutput(String output_path) {
-//        String output_path = "test_files\\kra\\out\\";
         File directory = new File(output_path);
         if (!directory.exists()) {
             directory.mkdir();
@@ -134,8 +137,7 @@ public class Roundel {
 
             if (incorrectData) {
                 myWriter.write("Wrong data!");
-            }
-            else {
+            } else {
                 myWriter.write(Long.toString(this.result));
             }
 
@@ -149,6 +151,7 @@ public class Roundel {
 
     /**
      * Override toString method
+     *
      * @return console output
      */
     @Override
@@ -158,6 +161,7 @@ public class Roundel {
 
     /**
      * Return Result Array
+     *
      * @return String Array {file_name, result}
      */
     public String[] getResultOnFile() {

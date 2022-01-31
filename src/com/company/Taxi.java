@@ -20,9 +20,6 @@ public class Taxi extends Roundel {
      */
     public Taxi(String l_path) {
         this.file_path = l_path;
-
-        System.out.println();
-
         try {
             File file = new File(l_path);
             Scanner myReader = new Scanner(file);
@@ -50,7 +47,6 @@ public class Taxi extends Roundel {
                         }
                         break;
                 }
-
                 line++;
             }
             myReader.close();
